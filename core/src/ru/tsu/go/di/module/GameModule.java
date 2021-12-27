@@ -28,6 +28,7 @@ import ru.tsu.go.scene.graphics.CameraSystem;
 import ru.tsu.go.scene.graphics.RenderingSystem;
 import ru.tsu.go.scene.graphics.TextureComponent;
 import ru.tsu.go.scene.hci.ClickComponent;
+import ru.tsu.go.scene.hci.ClickListener;
 import ru.tsu.go.scene.hci.InputHandlerSystem;
 import ru.tsu.go.scene.world.EngineFactory;
 import ru.tsu.go.scene.world.World;
@@ -74,7 +75,7 @@ public class GameModule {
             final Entity entity = engine.createEntity();
 
             Pixmap ds = new Pixmap(99, 99, Pixmap.Format.RGBA8888);
-            ds.setColor(Color.WHITE);
+            ds.setColor(color.getColor());
             ds.fillCircle(ds.getWidth()/2, ds.getWidth()/2, (int) ((ds.getWidth()/3.14f) /2f));
             Texture tex = new Texture(ds);
             texture.region = new TextureRegion(tex);
@@ -155,26 +156,33 @@ public class GameModule {
             final ClickComponent click = engine.createComponent(ClickComponent.class);
             final Entity entity = engine.createEntity();
             texture.region = new TextureRegion(tex);
-            click.listener = (x, y, maxX, maxY, button) -> {
-                final float tileSizeWU = worldUnits.toWorldUnits(borderSize * tileSize);
-                final float radius = tileSizeWU / 1.5f;
-                final float origin = radius / 2;
-                if (x <= tileSizeWU - origin || x >= maxX - tileSizeWU + origin) {
-                    return;
-                }
-                if (y <= tileSizeWU - origin || y >= maxY - tileSizeWU + origin) {
-                    return;
-                }
-                final float tileX = Math.round(x / tileSizeWU);
-                final float tileY = Math.round(y / tileSizeWU);
-                final Rectangle bounds = new Rectangle(tileX * tileSizeWU - origin, tileY * tileSizeWU - origin, radius, radius);
-                if (bounds.contains(x, y)) {
-                    final Entity stone = stoneFactory.newInstance(StoneColor.WHITE);
-                    final TransformComponent stoneTransform = stone.getComponent(TransformComponent.class);
-                    final float newX = position.position.x - maxX / 2 + tileX * tileSizeWU;
-                    final float newY = position.position.y - maxY / 2 + tileY * tileSizeWU;
-                    stoneTransform.position = new Vector3(newX, newY, 0);
-                    engine.addEntity(stone);
+            click.listener = new ClickListener() {
+
+                private StoneColor currentTeam = StoneColor.WHITE;
+
+                @Override
+                public void onClick(final float x, final float y, final float maxX, final float maxY, final int button) {
+                    final float tileSizeWU = worldUnits.toWorldUnits(borderSize * tileSize);
+                    final float radius = tileSizeWU / 1.5f;
+                    final float origin = radius / 2;
+                    if (x <= tileSizeWU - origin || x >= maxX - tileSizeWU + origin) {
+                        return;
+                    }
+                    if (y <= tileSizeWU - origin || y >= maxY - tileSizeWU + origin) {
+                        return;
+                    }
+                    final float tileX = Math.round(x / tileSizeWU);
+                    final float tileY = Math.round(y / tileSizeWU);
+                    final Rectangle bounds = new Rectangle(tileX * tileSizeWU - origin, tileY * tileSizeWU - origin, radius, radius);
+                    if (bounds.contains(x, y)) {
+                        final Entity stone = stoneFactory.newInstance(currentTeam);
+                        final TransformComponent stoneTransform = stone.getComponent(TransformComponent.class);
+                        final float newX = position.position.x - maxX / 2 + tileX * tileSizeWU;
+                        final float newY = position.position.y - maxY / 2 + tileY * tileSizeWU;
+                        stoneTransform.position = new Vector3(newX, newY, 0);
+                        engine.addEntity(stone);
+                        this.currentTeam = this.currentTeam == StoneColor.WHITE ? StoneColor.BLACK : StoneColor.WHITE;
+                    }
                 }
             };
             cameraComponent.target = entity;
