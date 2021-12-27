@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class GridComponent implements Component {
+
     public int entityId;
     public int[] grid;
 }

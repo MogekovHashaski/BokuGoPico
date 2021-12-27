@@ -16,7 +16,6 @@ public final class DesktopLauncher {
         final GoGame game = component.game();
         context.setGame(game);
         game.setScreenFactory(component.screenFactory());
-       // final TestScreen screen = component.testScreen();
         new LwjglApplication(game, config);
     }
 }

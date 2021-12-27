@@ -31,8 +31,8 @@ import ru.tsu.go.scene.graphics.TextureProvider;
 import ru.tsu.go.scene.hci.ClickComponent;
 import ru.tsu.go.scene.hci.InputHandlerSystem;
 import ru.tsu.go.scene.world.EngineFactory;
-import ru.tsu.go.scene.world.WorldUnits;
 import ru.tsu.go.scene.world.World;
+import ru.tsu.go.scene.world.WorldUnits;
 import ru.tsu.go.scene.world.entity.BoardFactory;
 import ru.tsu.go.scene.world.entity.TransformComponent;
 import ru.tsu.go.scene.world.entity.stone.StoneColor;
@@ -74,21 +74,17 @@ public class GameModule {
             final Engine engine = engineFactory.getInstance();
             final TransformComponent position = engine.createComponent(TransformComponent.class);
             final TextureComponent texture = engine.createComponent(TextureComponent.class);
-            final ClickComponent click = engine.createComponent(ClickComponent.class);
             final Entity entity = engine.createEntity();
 
             Pixmap ds = new Pixmap(99, 99, Pixmap.Format.RGBA8888);
             ds.setColor(Color.WHITE);
             ds.fillCircle(ds.getWidth()/2, ds.getWidth()/2, (int) ((ds.getWidth()/3.14f) /2f));
             Texture tex = new Texture(ds);
-            texture.region = new TextureRegion(tex);//textureProvider.getTexture("canti");
+            texture.region = new TextureRegion(tex);
             position.scale = new Vector2(worldUnits.getScaleForPixels(99, 0.7f), worldUnits.getScaleForPixels(99, 0.7f));
             ds.dispose();
-            final float f = tex.getWidth();
-            //click.listener = (x, y, z) -> System.out.println("x " + x + " y " + y + " z " + z);
             entity.add(position);
             entity.add(texture);
-            //entity.add(click);
             return entity;
         };
     }
@@ -198,7 +194,7 @@ public class GameModule {
     @Provides
     @GoScreenScope
     public InputHandlerSystem inputHandlerSystem(final WorldUnits worldUnits, final Viewport viewport, final OrthographicCamera camera) {
-        return new InputHandlerSystem(worldUnits, viewport, camera);
+        return new InputHandlerSystem(worldUnits, viewport);
     }
 
     @Provides

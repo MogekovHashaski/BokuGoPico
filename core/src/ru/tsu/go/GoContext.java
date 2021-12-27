@@ -9,20 +9,14 @@ import ru.tsu.go.view.screen.ScreenRepository;
 
 import javax.inject.Inject;
 
-public final class GoContext implements GameContext /*extends ContextWrapper*/ {
+public final class GoContext implements GameContext {
 
     private final ScreenRepository screenRepository;
     private Game game;
 
-    /*public GoContext(final GameContext context, final ScreenRepository screenRepository) {
-        //super(context);
-        this.screenRepository = screenRepository;
-    }*/
-
     @Inject
     public GoContext(final DefaultScreenRepository screenRepository) {
         this.screenRepository = screenRepository;
-        //this.game = game;
     }
 
     @Override

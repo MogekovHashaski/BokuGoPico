@@ -22,9 +22,7 @@ public class GoGame extends Game {
      */
     @Override
     public void create() {
-        /*if (screenFactory != null) {
-            setScreen(screenFactory.getInstance());
-        }*/
+
     }
 
     public <T extends Screen> void setScreenFactory(final ScreenFactory<T> screenFactory) {

@@ -2,11 +2,9 @@ package ru.tsu.go.scene.world;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import ru.tsu.go.di.scope.GoScreenScope;
-import ru.tsu.go.scene.hci.ClickComponent;
 import ru.tsu.go.scene.world.entity.BoardFactory;
 import ru.tsu.go.scene.world.entity.TransformComponent;
 import ru.tsu.go.scene.world.entity.stone.StoneColor;
@@ -30,9 +28,7 @@ public final class World {
 
     public void initialize() {
         final Entity board = boardFactory.newInstance();
-        //final Entity stone = stoneFactory.newInstance(StoneColor.WHITE);
         engine.addEntity(board);
-        //engine.addEntity(stone);
     }
 
     public void pulse(final float delta) {

@@ -12,8 +12,6 @@ import ru.tsu.go.di.scope.GoScreenScope;
 import ru.tsu.go.view.screen.ScreenFactory;
 import ru.tsu.go.view.screen.game.GoScreen;
 
-import javax.inject.Singleton;
-
 @GoScreenScope
 @Component(modules = {GameModule.class})
 public interface GameContextComponent {
@@ -24,10 +22,6 @@ public interface GameContextComponent {
 
     @Component.Builder
     interface Builder {
-        /*@BindsInstance
-        Builder withInitialWidth(@InitialWidth final int initialWidth);
-        @BindsInstance
-        Builder withInitialHeight(@InitialHeight final int initialHeight);*/
         @BindsInstance
         Builder withWorldWidth(@WorldWidth final float worldWidth);
         @BindsInstance
