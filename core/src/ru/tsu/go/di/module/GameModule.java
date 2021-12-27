@@ -27,7 +27,6 @@ import ru.tsu.go.scene.graphics.CameraComponent;
 import ru.tsu.go.scene.graphics.CameraSystem;
 import ru.tsu.go.scene.graphics.RenderingSystem;
 import ru.tsu.go.scene.graphics.TextureComponent;
-import ru.tsu.go.scene.graphics.TextureProvider;
 import ru.tsu.go.scene.hci.ClickComponent;
 import ru.tsu.go.scene.hci.InputHandlerSystem;
 import ru.tsu.go.scene.world.EngineFactory;
@@ -39,8 +38,6 @@ import ru.tsu.go.scene.world.entity.stone.StoneColor;
 import ru.tsu.go.scene.world.entity.stone.StoneFactory;
 import ru.tsu.go.view.screen.ScreenFactory;
 import ru.tsu.go.view.screen.game.GoScreen;
-
-import javax.annotation.Nullable;
 
 @Module(includes = GraphicsModule.class)
 public class GameModule {
@@ -60,7 +57,7 @@ public class GameModule {
 
     @Provides
     @GoScreenScope
-    Viewport provideViewport(final WorldUnits worldUnits, final OrthographicCamera camera) { // camera.viewportHeight
+    Viewport provideViewport(final WorldUnits worldUnits, final OrthographicCamera camera) {
         final Viewport viewport = new StretchViewport(worldUnits.getWorldWidth(), worldUnits.getWorldHeight(), camera);
         viewport.apply(true);
         viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -69,7 +66,7 @@ public class GameModule {
 
     @Provides
     @GoScreenScope
-    public StoneFactory provideStoneFactory(final WorldUnits worldUnits, final EngineFactory engineFactory, final TextureProvider textureProvider) {
+    public StoneFactory provideStoneFactory(final WorldUnits worldUnits, final EngineFactory engineFactory) {
         return color -> {
             final Engine engine = engineFactory.getInstance();
             final TransformComponent position = engine.createComponent(TransformComponent.class);
@@ -172,7 +169,6 @@ public class GameModule {
                 final float tileY = Math.round(y / tileSizeWU);
                 final Rectangle bounds = new Rectangle(tileX * tileSizeWU - origin, tileY * tileSizeWU - origin, radius, radius);
                 if (bounds.contains(x, y)) {
-                    System.out.println("x " + tileX + " y " + tileY);
                     final Entity stone = stoneFactory.newInstance(StoneColor.WHITE);
                     final TransformComponent stoneTransform = stone.getComponent(TransformComponent.class);
                     final float newX = position.position.x - maxX / 2 + tileX * tileSizeWU;
@@ -193,7 +189,7 @@ public class GameModule {
 
     @Provides
     @GoScreenScope
-    public InputHandlerSystem inputHandlerSystem(final WorldUnits worldUnits, final Viewport viewport, final OrthographicCamera camera) {
+    public InputHandlerSystem inputHandlerSystem(final WorldUnits worldUnits, final Viewport viewport) {
         return new InputHandlerSystem(worldUnits, viewport);
     }
 
@@ -205,8 +201,8 @@ public class GameModule {
 
     @Provides
     @GoScreenScope
-    public RenderingSystem provideRenderingSystem(final WorldUnits worldUnits, final OrthographicCamera camera, @Nullable final Viewport viewport, SpriteBatch spriteBatch) {
-        return new RenderingSystem(worldUnits, spriteBatch, camera/*, viewport*/);
+    public RenderingSystem provideRenderingSystem(final WorldUnits worldUnits, final OrthographicCamera camera, SpriteBatch spriteBatch) {
+        return new RenderingSystem(worldUnits, spriteBatch, camera);
     }
 
     @Provides
@@ -227,7 +223,7 @@ public class GameModule {
 
     @Provides
     @GoScreenScope
-    public ScreenFactory<GoScreen> screenFactory(final Lazy<GoGame> game, final Lazy<Viewport> viewport, final Lazy<World> world/*Lazy<Engine> engine, final Lazy<StoneFactory> stoneFactory*/) {
-        return () -> new GoScreen(game.get(), viewport.get(), world.get()/*engine.get(), stoneFactory.get()*/);
+    public ScreenFactory<GoScreen> screenFactory(final Lazy<GoGame> game, final Lazy<Viewport> viewport, final Lazy<World> world) {
+        return () -> new GoScreen(game.get(), viewport.get(), world.get());
     }
 }
