@@ -1,5 +1,6 @@
 package ru.tsu.go.scene.world.entity.stone;
 
+import com.badlogic.gdx.graphics.Color;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -7,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum StoneColor {
 
-    WHITE("stone-white"),
-    BLACK("stone-black");
+    WHITE(Color.WHITE),
+    BLACK(Color.BLACK);
 
-    private final String atlasRegion;
+    private final Color color;
 }
