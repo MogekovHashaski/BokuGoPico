@@ -1,4 +1,4 @@
-package ru.tsu.go.component;
+package ru.tsu.go.scene.world.entity.board;
 
 import com.badlogic.ashley.core.Component;
 import lombok.Data;
