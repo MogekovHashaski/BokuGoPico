@@ -68,7 +68,7 @@ public class InputHandlerSystem extends SortedIteratingSystem {
     @Override
     public void update(final float deltaTime) {
         super.update(deltaTime);
-        if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+        if (!Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             inputQueue.clear();
             return;
         }
