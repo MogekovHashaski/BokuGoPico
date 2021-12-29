@@ -19,7 +19,7 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
 
-    version = '1.0'
+    version = '1.0.0-alpha1'
     ext {
         appName = "go-libgdx"
         gdxVersion = '1.10.0'
