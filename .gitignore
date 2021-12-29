@@ -1,0 +1,226 @@
+### Java ###
+*.class
+*.war
+*.ear
+*.jar
+*.nar
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+bin/
+gen/
+out/
+build/
+*.ctxt
+*.log
+.mtj.tmp/
+
+### Robovm ###
+robovm-build/
+
+### GWT ###
+.apt_generated/
+.gwt/
+gwt-unitCache/
+www-test/
+.gwt-tmp/
+war/
+
+### Android ###
+*.apk
+*.aar
+*.ap_
+*.aab
+*.dex
+local.properties
+proguard/
+libs/
+com_crashlytics_export_strings.xml
+
+### Intellij ###
+.externalNativeBuild
+.navigation/
+captures/
+.cxx/
+*.iml
+.idea/
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+freeline.py
+freeline/
+freeline_project_description.json
+vcs.xml
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+*.hprof
+gen-external-apklibs
+output.json
+cmake-build-*/
+.idea/**/mongoSettings.xml
+*.iws
+.idea_modules/
+atlassian-ide-plugin.xml
+.idea/replstate.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+modules.xml
+.idea/misc.xml
+*.ipr
+.idea/sonarlint
+.signing/
+*.swp
+*.jks
+*.keystore
+obj/
+.classpath
+.project
+.cproject
+.settings/
+.idea/mongoSettings.xml
+!/gradle/wrapper/gradle-wrapper.jar
+
+### Eclipse ###
+.metadata
+tmp/
+*.tmp
+*.bak
+*~.nib
+.loadpath
+.recommenders
+.externalToolBuilders/
+*.launch
+*.pydevproject
+.autotools
+.factorypath
+.buildpath
+.target
+.tern-project
+.texlipse
+.springBeans
+.recommenders/
+.apt_generated_test/
+.cache-main
+.scala_dependencies
+.worksheet
+.sts4-cache/
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+nbactions.xml
+nb-configuration.xml
+
+### Gradle ###
+.gradle
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+### Xcode and iOS ###
+xcuserdata/
+xcode/native/
+IOSLauncher.app
+IOSLauncher.app.dSYM
+*.xcscmblueprint
+*.xccheckout
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+/*.gcno
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+iOSInjectionProject/
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### macOS ###
+# General
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
